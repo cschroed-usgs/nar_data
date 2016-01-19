@@ -9,8 +9,7 @@ Depends:
     R (>= 3.2.0)
 License: file LICENSE
 RoxygenNote: 5.0.1
-Suggests:
-    testthat,
+Suggests: testthat,
     devtools,
     knitr,
     validate,
