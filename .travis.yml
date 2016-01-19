@@ -27,7 +27,15 @@ script:
   - R CMD INSTALL nardata_*.tar.gz
   - R --vanilla -e 'library(nardata);source("R/serialize_time_series.R"); serialize_time_series();'
   - DIFFERING_SERIALIZED_FILES=`git ls-files -mo inst/extdata/`
-  - "[[ -n DIFFERING_SERIALIZED_FILES ]] && { echo 'Error : The following serialized files are different than what is checked in. Did you forget to serialize them or check in the results?'; echo $DIFFERING_SERIALIZED_FILES; exit 1; } || { echo 'Serialized files are identical'; }"
+  - |
+        if [[ -n $DIFFERING_SERIALIZED_FILES ]]
+        then
+                echo 'Error : The following serialized files are different than what is checked in. Did you forget to serialize them or check them in to git?';
+                echo $DIFFERING_SERIALIZED_FILES;
+                false;
+        else
+                echo 'Serialized files are identical';
+        fi
 
 after_failure:
   - ./travis-tool.sh dump_logs
