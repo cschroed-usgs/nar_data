@@ -1,8 +1,9 @@
+library(utils)
 EXTENSION <- '.csv'
 write_out <- function(dataframe_name){
 	dataframe <- get(dataframe_name)
 	file_name <- paste(get_serialized_data_dir(), dataframe_name, EXTENSION, sep = "")
-	write.csv(dataframe, file_name, quote = TRUE, na = "NULL", eol = "\n")
+	utils::write.csv(dataframe, file_name, quote = TRUE, na = "NULL", eol = "\n", fileEncoding = 'ASCII')
 	return(file_name);
 }
 
