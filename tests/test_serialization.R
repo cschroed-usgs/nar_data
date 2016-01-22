@@ -6,7 +6,6 @@ test_that("serialization is current", {
 	old_wd <- getwd()
 	#presume that user has not changed the name of the clone dir from the default
 	default_clone_dir <- 'nar_data'
-	warning(' initial working directory: ', old_wd)
 	tryCatch({
 		#linux or OSX
 		dir_sep <- '/'
@@ -40,20 +39,26 @@ test_that("serialization is current", {
 				 relative_path_to_repo_root
 			)
 		} else {
-			warning("relative path to repo root exists: ", relative_path_to_repo_root)
+
 			setwd(relative_path_to_repo_root)
 	
 			nardata::serialize_time_series()
 			path_to_data_dir_from_repo_root <- nardata::get_serialized_data_dir()
-			warning('path_to_data_dir_from_repo_root: ', path_to_data_dir_from_repo_root)
 			git_command <- paste('git ls-files -mo', path_to_data_dir_from_repo_root)
-			warning('git command: ', git_command)
 			stale_or_new_files <- system( git_command, intern = TRUE)
 			
 			if (0 != length(stale_or_new_files)) {
 				stale_or_new_files <- paste(stale_or_new_files, collapse = ', ')
-				warning('stale or new files: ', stale_or_new_files)
-				testthat::fail(paste("The following serialized files are not current:", stale_or_new_files, 'Try running nardata::serialize_time_series(), and adding and committing the resulting files.'))
+				git_diff_command <- paste('git diff', path_to_data_dir_from_repo_root)
+				git_diff <- paste(system(git_diff_command, intern = TRUE), collapse = '\n')
+				failure_message <- paste(
+					"The following serialized files are not current:",
+					stale_or_new_files,
+					'Try running nardata::serialize_time_series(), and adding and committing the resulting files.',
+					'The following git diff was reported:',
+					git_diff
+				)
+				testthat::fail(failure_message)
 			} else {
 				testthat::succeed("Serialized files are not checked")
 			}
