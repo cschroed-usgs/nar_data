@@ -1,3 +1,4 @@
+clone_folder: c:\projects\nar_data
 init:
   - ps: |
         $ErrorActionPreference = "Stop"
