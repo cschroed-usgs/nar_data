@@ -1,4 +1,4 @@
-language: c
+language: r
 sudo: required
 before_script:
   - curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
@@ -13,29 +13,3 @@ before_script:
   - cat /tmp/git-lfs-fetch.log
   - git lfs checkout > /tmp/git-lfs-checkout.log
   - cat /tmp/git-lfs-checkout.log
-
-before_install:
-  - curl -OL  https://raw.githubusercontent.com/craigcitro/r-travis/1e982113c366fff5a9595a49358fbb395b7d205d/scripts/travis-tool.sh
-  - chmod 755 ./travis-tool.sh
-  - ./travis-tool.sh bootstrap
-
-install:
-  - ./travis-tool.sh install_deps
-
-script:
-  - ./travis-tool.sh run_tests
-  - R CMD INSTALL nardata_*.tar.gz
-  - R --vanilla -e 'library(nardata);source("R/serialize_time_series.R"); serialize_time_series();'
-  - DIFFERING_SERIALIZED_FILES=`git ls-files -mo inst/extdata/`
-  - |
-        if [[ -n $DIFFERING_SERIALIZED_FILES ]]
-        then
-                echo 'Error : The following serialized files are different than what is checked in. Did you forget to serialize them or check them in to git?';
-                echo $DIFFERING_SERIALIZED_FILES;
-                false;
-        else
-                echo 'Serialized files are identical';
-        fi
-
-after_failure:
-  - ./travis-tool.sh dump_logs
