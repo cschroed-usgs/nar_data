@@ -53,7 +53,7 @@ test_that("serialization is current", {
 			if (0 != length(stale_or_new_files)) {
 				stale_or_new_files <- paste(stale_or_new_files, collapse = ', ')
 				warning('stale or new files: ', stale_or_new_files)
-				testthat::fail(paste("The following serialized files are not current. Try running nardata::serialize_time_series(), and adding and committing the resulting files.:", stale_or_new_files))
+				testthat::fail(paste("The following serialized files are not current:", stale_or_new_files, 'Try running nardata::serialize_time_series(), and adding and committing the resulting files.'))
 			} else {
 				testthat::succeed("Serialized files are not checked")
 			}
