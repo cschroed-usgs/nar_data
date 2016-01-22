@@ -13,6 +13,7 @@ Suggests: testthat,
     devtools,
     knitr,
     validate,
-    rmarkdown
+    rmarkdown,
+    utils
 VignetteBuilder: knitr
 LazyData: true
