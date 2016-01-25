@@ -3,7 +3,8 @@ EXTENSION <- '.csv'
 write_out <- function(dataframe_name){
 	dataframe <- get(dataframe_name)
 	file_name <- paste(get_serialized_data_dir(), dataframe_name, EXTENSION, sep = "")
-	utils::write.csv(dataframe, file_name, quote = TRUE, na = "NULL", eol = "\n", fileEncoding = 'ASCII')
+	#R ignores params passed to write.csv on Windows. The following line forces non-windows OS's to write a file using the Windwows defaults
+	utils::write.csv(dataframe, file_name, quote = TRUE, na = "NULL", eol = "\r\n", fileEncoding = 'ASCII')
 	return(file_name);
 }
 
