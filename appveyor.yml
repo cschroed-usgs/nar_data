@@ -21,6 +21,7 @@ test_script:
 
 on_failure:
   - travis-tool.sh dump_logs
+  - cat inst\extdata\mflow.csv
 
 artifacts:
   - path: '*.Rcheck\**\*.log'
