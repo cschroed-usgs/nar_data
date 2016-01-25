@@ -49,14 +49,10 @@ test_that("serialization is current", {
 			
 			if (0 != length(stale_or_new_files)) {
 				stale_or_new_files <- paste(stale_or_new_files, collapse = ', ')
-				git_diff_command <- paste('git diff', path_to_data_dir_from_repo_root)
-				git_diff <- paste(system(git_diff_command, intern = TRUE), collapse = '\n')
 				failure_message <- paste(
 					"The following serialized files are not current:",
 					stale_or_new_files,
-					'Try running nardata::serialize_time_series(), and adding and committing the resulting files.',
-					'The following git diff was reported:',
-					git_diff
+					'Try running nardata::serialize_time_series(), and adding and committing the resulting files.'
 				)
 				testthat::fail(failure_message)
 			} else {
