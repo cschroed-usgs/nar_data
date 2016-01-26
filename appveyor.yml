@@ -24,6 +24,9 @@ on_failure:
   - cat inst\extdata\mflow.csv
 
 artifacts:
+  - path: inst\extdata
+  - name: SerializedData
+
   - path: '*.Rcheck\**\*.log'
     name: Logs
 
