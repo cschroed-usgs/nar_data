@@ -22,12 +22,6 @@ test_script:
 on_failure:
   - travis-tool.sh dump_logs
   - cat inst\extdata\mflow.csv
-  - ord() { LC_CTYPE=C printf '%d' "'$1"; echo;};
-  - FIRST_LINE=`head -n 1 inst/extdata/mflow.csv`
-  - ord ${FIRST_LINE: -3};
-  - ord ${FIRST_LINE: -2};
-  - ord ${FIRST_LINE: -1};
-
 
 artifacts:
   - path: 'inst\extdata\*.csv'
