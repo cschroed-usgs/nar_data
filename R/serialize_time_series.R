@@ -7,6 +7,7 @@ write_out <- function(dataframe_name){
 	return(file_name);
 }
 
+#'@export
 serialize_time_series <- function(){
 	data_frame_names <- c(
 		'discqw',

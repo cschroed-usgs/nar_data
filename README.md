@@ -14,3 +14,20 @@ To perform read-only checkouts of this project without being prompted for creden
 git config --global credential.helper 'store --file .anonymous-git-credentials'
 ```
 
+To run validation tests on this data:
+* using RStudio
+ * open the project in RStudio
+ * set your current directory to the project root
+ * open the "Build" pane
+ * click "Build & Reload"
+ * execuite the tests via Ctl/Cmd+Shift+T, or by running 'devtools::test()' in the Console
+
+To serialize the data:
+* Using RStudio
+ * set your current directory to the project root
+ * open the "Build" pane
+ * click "Build & Reload"
+ * run 'nardata::serialize_time_series()' in the Console
+
+To insert serialized data into the database, see liquibase/README.md
+

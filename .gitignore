@@ -14,3 +14,4 @@ vignettes/*.pdf
 inst/doc
 #Test reports
 tests/testthat/*.pdf
+/liquibase/target/

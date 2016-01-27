@@ -7,3 +7,4 @@ appveyor.yml
 README.md
 .anonymous-git-credentials
 .gitconfig
+liquibase

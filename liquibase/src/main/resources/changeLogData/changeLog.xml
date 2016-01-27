@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<databaseChangeLog 
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd"
+    logicalFilePath="root/changeLog.xml"> 
+
+    <preConditions>
+        <dbms type="postgresql" />
+        <runningAs username="postgres" />
+    </preConditions>
+    <changeSet author="jiwalker" id="loadAflow" runOnChange="true">
+		<delete tableName="aflow" />
+		<loadData
+			encoding="UTF-8"
+			tableName="aflow"
+			file="${nar.data.location}/aflow.csv"
+		>
+			<column name="rownum" header="" type="skip" />
+			<column name="site_abb" header="SITE_ABB" type="STRING" />
+			<column name="site_qw_id" header="SITE_QW_ID" type="STRING" />
+			<column name="site_flow_id" header="SITE_FLOW_ID" type="STRING" />
+			<column name="wy" header="WY" type="NUMERIC" />
+			<column name="flow" header="FLOW" type="NUMERIC" />
+		</loadData>
+		<rollback>delete from aflow</rollback>
+	</changeSet>
+	<changeSet author="jiwalker" id="loadAloads" runOnChange="true">
+		<delete tableName="aloads" />
+		<loadData
+			encoding="UTF-8"
+			tableName="aloads"
+			file="${nar.data.location}/aloads.csv"
+		>
+			<column name="rownum" header="" type="skip" />
+			<column name="site_abb" header="SITE_ABB" type="STRING" />
+			<column name="site_qw_id" header="SITE_QW_ID" type="STRING" />
+			<column name="site_flow_id" header="SITE_FLOW_ID" type="STRING" />
+			<column name="constit" header="CONSTIT" type="STRING" />
+			<column name="wy" header="WY" type="NUMERIC" />
+			<column name="modtype" header="MODTYPE" type="STRING" />
+			<column name="tons" header="TONS" type="NUMERIC" />
+			<column name="tons_l95" header="TONS_L95" type="NUMERIC" />
+			<column name="tons_u95" header="TONS_U95" type="NUMERIC" />
+			<column name="fwc" header="FWC" type="NUMERIC" />
+			<column name="yield" header="YIELD" type="NUMERIC" />
+		</loadData>
+		<rollback>delete from aloads</rollback>
+	</changeSet>
+	<changeSet author="jiwalker" id="loadDflow" runOnChange="true">
+		<delete tableName="dflow" />
+		<loadData
+			encoding="UTF-8"
+			tableName="dflow"
+			file="${nar.data.location}/dflow.csv"
+		>
+			<column name="rownum" header="" type="skip" />
+			<column name="site_abb" header="SITE_ABB" type="STRING" />
+			<column name="site_qw_id" header="SITE_QW_ID" type="STRING" />
+			<column name="site_flow_id" header="SITE_FLOW_ID" type="STRING" />
+			<column name="date" header="DATE" type="DATE" />
+			<column name="flow" header="FLOW" type="NUMERIC" />
+			<column name="wy" header="WY" type="NUMERIC" />
+		</loadData>
+		<rollback>delete from dflow</rollback>
+	</changeSet>
+	<changeSet author="jiwalker" id="loadDiscqw" runOnChange="true">
+		<delete tableName="discqw" />
+		<loadData
+			encoding="UTF-8"
+			tableName="discqw"
+			file="${nar.data.location}/discqw.csv"
+		>
+			<column name="rownum" header="" type="skip" />
+			<column name="site_abb" header="SITE_ABB" type="STRING" />
+			<column name="site_qw_id" header="SITE_QW_ID" type="STRING" />
+			<column name="site_flow_id" header="SITE_FLOW_ID" type="STRING" />
+			<column name="constit" header="CONSTIT" type="STRING" />
+			<column name="date" header="DATE" type="DATE" />
+			<column name="wy" header="WY" type="NUMERIC" />
+			<column name="concentration" header="CONCENTRATION" type="NUMERIC" />
+			<column name="remark" header="REMARK" type="STRING" />
+		</loadData>
+		<rollback>delete from discqw</rollback>
+	</changeSet>
+	<changeSet author="jiwalker" id="loadMflow" runOnChange="true">
+		<delete tableName="mflow" />
+		<loadData
+			encoding="UTF-8"
+			tableName="mflow"
+			file="${nar.data.location}/mflow.csv"
+		>
+			<column name="rownum" header="" type="skip" />
+			<column name="site_abb" header="SITE_ABB" type="STRING" />
+			<column name="site_qw_id" header="SITE_QW_ID" type="STRING" />
+			<column name="site_flow_id" header="SITE_FLOW_ID" type="STRING" />
+			<column name="wy" header="WY" type="NUMERIC" />
+			<column name="month" header="MONTH" type="NUMERIC" />
+			<column name="flow" header="FLOW" type="NUMERIC" />
+		</loadData>
+		<rollback>delete from mflow</rollback>
+	</changeSet>
+	<changeSet author="jiwalker" id="loadMloads" runOnChange="true">
+		<delete tableName="mloads" />
+		<loadData
+			encoding="UTF-8"
+			tableName="mloads"
+			file="${nar.data.location}/mloads.csv"
+		>
+			<column name="rownum" header="" type="skip" />
+			<column name="site_abb" header="SITE_ABB" type="STRING" />
+			<column name="site_qw_id" header="SITE_QW_ID" type="STRING" />
+			<column name="site_flow_id" header="SITE_FLOW_ID" type="STRING" />
+			<column name="constit" header="CONSTIT" type="STRING" />
+			<column name="wy" header="WY" type="NUMERIC" />
+			<column name="month" header="MONTH" type="NUMERIC" />
+			<column name="modtype" header="MODTYPE" type="STRING" />
+			<column name="tons" header="TONS" type="NUMERIC" />
+			<column name="tons_l95" header="TONS_L95" type="NUMERIC" />
+			<column name="tons_u95" header="TONS_U95" type="NUMERIC" />
+		</loadData>
+		<rollback>delete from mloads</rollback>
+	</changeSet>
+    
+</databaseChangeLog>
