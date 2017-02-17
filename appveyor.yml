@@ -12,6 +12,9 @@ install:
 environment:
   NOT_CRAN: "true"
 
+before_build:
+  - cmd: git config --global credential.helper "store --file .anonymous-git-credentials"
+
 build_script:
   - travis-tool.sh install_deps
 
