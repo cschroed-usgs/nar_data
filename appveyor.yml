@@ -13,7 +13,8 @@ environment:
   NOT_CRAN: "true"
 
 before_build:
-  - cmd: git config --global credential.helper "store --file .anonymous-git-credentials"
+  - cmd: git lfs fetch
+  - cmd: git lfs checkout
 
 build_script:
   - travis-tool.sh install_deps
