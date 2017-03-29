@@ -118,7 +118,7 @@ liquibase <- function(df, dataframe_name) {
   }
   
   cat(paste0(
-    "\n\t\t\t) FROM '${nar.data.location}/", table_name, ".csv' DELIMITER ',' CSV HEADER NULL 'NULL';\n",
+    "\n\t\t\t) FROM '\"${nar.data.location}/", table_name, ".csv\"' DELIMITER ',' CSV HEADER NULL 'NULL';\n",
     '\t\t</sql>\n'
   ))
   cat(paste0(
